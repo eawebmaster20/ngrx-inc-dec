@@ -28,7 +28,6 @@ export class AppComponent {
     this.store.dispatch(decrement());
   }
   reset() {
-    // Dispatch reset action
     this.store.dispatch(reset());
   }
 }
