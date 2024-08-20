@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { decrement, increment, reset } from './state/counter.actions';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { LogicService } from './shared/services/logic.service';
 
 
 @Component({
@@ -16,11 +17,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class AppComponent {
   title = 'ngrxInDec';
+  resetBool:boolean = false;
   counter:Observable<number> = this.store.select('counter');
-  constructor(private store: Store<{ counter: number }>) {
-    // this.count$.subscribe(res => console.log(res)
-    // )
-  }
+  constructor(private store: Store<{ counter: number }>, public counterLogicService: LogicService) {  }
   increment(){
     this.store.dispatch(increment());
   }
@@ -28,6 +27,13 @@ export class AppComponent {
     this.store.dispatch(decrement());
   }
   reset() {
+    this.animateResetButton();
     this.store.dispatch(reset());
+  }
+  animateResetButton(){
+    this.resetBool = true;
+    setTimeout(() => {
+      this.resetBool = false;
+    }, 1000);
   }
 }
