@@ -5,18 +5,19 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { counterReducer } from './state/counter.reducer';
+import { provideEffects } from '@ngrx/effects';
+import { CounterEffects } from './state/counter.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes), 
-    provideClientHydration(), 
+    provideRouter(routes),
+    provideClientHydration(),
     provideStore(),
-    provideState(
-      {
-      name: 'counter',
-      reducer: counterReducer,
+    provideState({
+        name: 'counter',
+        reducer: counterReducer,
     }),
-    provideStoreDevtools({maxAge:25, logOnly: false}),
-    // provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
-  ]
+    provideStoreDevtools({ maxAge: 25, logOnly: false }),
+    provideEffects(CounterEffects)
+]
 };

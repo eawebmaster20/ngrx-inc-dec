@@ -5,9 +5,12 @@
     <p>{{ counter | async }}</p>
     <button (click)="increment()">+</button>
   </div>
-  <span class="counter-reset-btn">
-    <img src="assets/reset-ico.svg" alt="reset-icon">
+  <span (click)="reset()" class="counter-reset-btn">
+    <img [class]="resetBool? 'spin-icon':''" src="assets/reset-ico.svg" alt="reset-icon">
     <span>Reset counter</span>
+  </span>
+  <span [class]="counterLogicService.minimumCounterReached?'show-hidden-item':''" class="error-info">
+    sorry, you cannot go beyond Zero
   </span>
 </main>
 </div>
