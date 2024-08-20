@@ -1,7 +1,13 @@
-<div class="container">
+<div class="main-container">
+<main>
   <div class="inc-dec-container">
     <button (click)="decrement()">-</button>
     <p>{{ counter | async }}</p>
     <button (click)="increment()">+</button>
   </div>
+  <span class="counter-reset-btn">
+    <img src="assets/reset-ico.svg" alt="reset-icon">
+    <span>Reset counter</span>
+  </span>
+</main>
 </div>
